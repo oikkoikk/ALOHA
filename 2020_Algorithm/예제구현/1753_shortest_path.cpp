@@ -34,7 +34,7 @@ void Dijkstra(int start)
         now = PQ.top().second;
         PQ.pop();
 
-        if(dist[now] != INF) //한 번 왔던 곳이면 넘어가자
+        if(nowDist > dist[now]) //최단 거리가 아니면 그냥 패스!
         {
             continue;
         }
