@@ -22,37 +22,35 @@ void BFS(pair<int, int> start)
     q.push(start);
     visited[start.second][start.first] = 1;
 
-    while(!q.empty())
+    while (!q.empty())
     {
-        pair <int,int> curr = q.front();
+        pair<int, int> curr = q.front();
         q.pop();
 
-        for(int i=0; i<4; i++)
+        for (int i = 0; i < 4; i++)
         {
             int nextY = curr.second + dir[i][1]; //상하좌우 모든 가능성 체크
             int nextX = curr.first + dir[i][0];
 
-            if(isInside(nextX, nextY) && visited[nextY][nextX] == 0&& graph[nextY][nextX] == 1)
+            if (isInside(nextX, nextY) && visited[nextY][nextX] == 0 && graph[nextY][nextX] == 1)
             {
                 visited[nextY][nextX] = 1;
-                q.push(pair<int,int>(nextX, nextY));
+                q.push(pair<int, int>(nextX, nextY));
             }
         }
-        
     }
-
 }
 int nextToFind() //graph 다 돌려보면서 연결요소(?) 체크
 {
-    int count =0;
-    for(int i=0; i<M; i++)
+    int count = 0;
+    for (int i = 0; i < M; i++)
     {
-        for(int j=0; j<N; j++)
+        for (int j = 0; j < N; j++)
         {
-            if(graph[j][i] == 1 && visited[j][i] == 0)
+            if (graph[j][i] == 1 && visited[j][i] == 0)
             {
-                count ++;
-                BFS(pair<int,int>(i,j));
+                count++;
+                BFS(pair<int, int>(i, j));
             }
         }
     }
@@ -64,7 +62,7 @@ int main()
     pair<int, int> start = {0, 0};
     cin >> T;
 
-    for(int i=0; i<T; i++)
+    for (int i = 0; i < T; i++)
     {
         memset(graph, 0, sizeof(graph));
         memset(visited, 0, sizeof(visited));

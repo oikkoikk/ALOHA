@@ -9,25 +9,25 @@ vector<int> A;
 int BinarySearch(int N, const int key)
 {
   int start = 0;
-  int end = N-1;
+  int end = N - 1;
   int mid;
 
-  while(start<=end)
+  while (start <= end)
   {
-    mid = (start + end) /2;
+    mid = (start + end) / 2;
 
-    if(A[mid] == key)
+    if (A[mid] == key)
     {
       cout << '1' << '\n';
       return 0;
     }
-    else if(A[mid] > key)
+    else if (A[mid] > key)
     {
       end = mid - 1;
     }
     else
     {
-      start = mid +1;
+      start = mid + 1;
     }
   }
   cout << '0' << '\n';
@@ -41,7 +41,7 @@ int main()
 
   int N, M;
   cin >> N;
-  for(int i=0; i<N; i++)
+  for (int i = 0; i < N; i++)
   {
     int num;
     cin >> num;
@@ -49,7 +49,7 @@ int main()
   }
   sort(A.begin(), A.end());
   cin >> M;
-  for(int i=0; i<M; i++)
+  for (int i = 0; i < M; i++)
   {
     int num;
     cin >> num;

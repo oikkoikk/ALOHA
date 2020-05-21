@@ -1,8 +1,8 @@
-#include<iostream>
+#include <iostream>
 
-#define max(a,b) a > b ? a : b
+#define max(a, b) a > b ? a : b
 using namespace std;
- 
+
 int N;
 int ans[2];
 int chess[11][11];
@@ -18,7 +18,7 @@ int r[19]; // 우상향 대각선(10X10일 때 최대 20칸)
    2 3 4 5 6
    3 4 5 6 7
    4 5 6 7 8 */
- 
+
 // 놓을 수 있는 비숍의 최대개수를 구하는 함수
 // 흑/백, 두 가지 경우로 나누어 계산
 
@@ -28,12 +28,12 @@ void Backtracking(int row, int col, int count, int color)
     if (col >= N)
     {
         row++;
-        if (col % 2 == 0) 
+        if (col % 2 == 0)
             col = 1;
-        else 
+        else
             col = 0;
     }
-     //끝까지 가면 값 저장
+    //끝까지 가면 값 저장
     if (row >= N)
     {
         ans[color] = max(ans[color], count);
