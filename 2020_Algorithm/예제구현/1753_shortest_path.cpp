@@ -11,21 +11,14 @@ using namespace std;
 const int INF = INT_MAX;
 
 vector<int> dist(20001, INF); //거리 저장하는 배열(INF로 초기화)
-priority_queue<pair<int, int>> PQ;
 vector<pair<int, int>> Node[20001];
 int V, E, K, u, v, w;
 
 void Dijkstra(int start)
 {
+    priority_queue<pair<int, int>> PQ;
     dist[start] = 0;
-
-    for (int i = 0; i < Node[start].size(); i++)
-    {
-        if (dist[Node[start][i].first] == INF) //아직 안 와본 곳이면
-        {
-            PQ.push({-Node[start][i].second, Node[start][i].first}); //-붙여서 가중치 작은 순으로!
-        }
-    }
+    PQ.push({0, start});
 
     while (!PQ.empty())
     {
@@ -38,12 +31,16 @@ void Dijkstra(int start)
         {
             continue;
         }
-        dist[now] = nowDist;
-        for (int i = 0; i < Node[now].size(); i++)
+
+        for (auto p : Node[now])
         {
-            if (dist[Node[now][i].first] == INF)
+            int next = p.first;
+            int nextDist = p.second;
+
+            if (nextDist < dist[next])
             {
-                PQ.push({-(nowDist + Node[now][i].second), Node[now][i].first});
+                dist[next] = nextDist;
+                PQ.push({-nextDist, next});
             }
         }
     }
