@@ -1,3 +1,4 @@
+//다이나믹 프로그래밍!
 #include <iostream>
 #include <string>
 #include <vector>
