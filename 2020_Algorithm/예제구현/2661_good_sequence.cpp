@@ -3,7 +3,6 @@
 
 using namespace std;
 
-int stack = 0; //1,2,3 모두 빠꾸맞으면 다음으로 넘어간다
 string good = "";
 int N;
 
@@ -40,8 +39,8 @@ void Backtracking(int len)
         good += to_string(i);
         if (isOK(len))
         {
-            Backtracking(len + 1); 
-            good.erase(len-1);//백트래킹
+            Backtracking(len + 1);
+            good.erase(len - 1); //백트래킹
         }
         else
         {
