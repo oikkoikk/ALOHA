@@ -30,7 +30,7 @@ int main()
     {
         for (int j = coin[i]; j <= K; j++) //동전 각각의 금액부터 K까지!
         {
-            DP[j] = min(DP[j], DP[j - coin[i]] + 1); // 원래 있는 대로 할지, 동전 바꿀지 결정
+            DP[j] = min(DP[j], DP[j - coin[i]] + 1); // 원래 있는 대로 할지, 동전 바꿀지 결정 (j원을 만드려면, (j-coin[i])원에서 동전 1개를 추가하면 된다.)
         }
     }
 
