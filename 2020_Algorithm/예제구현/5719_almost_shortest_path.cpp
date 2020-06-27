@@ -17,7 +17,7 @@ void Dijkstra(vector<pair<int, int>> Map[], bool (*visit)[MAX])
         dist[i] = INF;
 
     dist[s] = 0;
-    priority_queue<pair<int, int>> PQ;
+    priority_queue<pair<int, int>> PQ; //cf. priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> PQ로 하면, 오름차순으로 정렬된다.
     PQ.push({0, s});
 
     while (!PQ.empty())
