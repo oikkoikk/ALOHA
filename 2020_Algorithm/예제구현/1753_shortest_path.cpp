@@ -35,7 +35,7 @@ void Dijkstra(int start)
         for (auto p : Node[now])
         {
             int next = p.first;
-            int nextDist = p.second;
+            int nextDist = p.second + dist[now];
 
             if (nextDist < dist[next])
             {
