@@ -26,7 +26,7 @@ int main()
     }
 
     //뒤에서부터 LDS 체크!
-    int now = N;
+    int now = N; //N번 움직이면 무조건 정렬된다!
 
     for (int i = N - 1; i >= 0; i--)
     {
