@@ -1,74 +1,84 @@
-// ºĞÇÒÁ¤º¹ ¸¸µé¾îº¸±â ^_________^
+//í•©ë³‘ì •ë ¬(ë¶„í• ì •ë³µ ì´ìš©)
+//ë‹¨ê³„ë¥¼ ë‚˜ëˆŒ ìˆ˜ë¡ ë¬¸ì œì˜ ì–‘ì€ 2ë°°ë¡œ ëŠ˜ì–´ë‚œë‹¤!
+//ê° ë‹¨ê³„ì—ì„œì˜ ì´ ì—°ì‚°ëŸ‰ì€ ì•½ O(N)
+//ex) 1ë‹¨ê³„: 1*O(N) 2ë‹¨ê³„: 2*O(N/2) ...
+//ë”°ë¼ì„œ ì´ ì‹œê°„ë³µì¡ë„ëŠ” ì•½ O(NlogN)!
 #include <iostream>
 #include <vector>
 #include <algorithm>
 using namespace std;
 
-int n, number, sorted[500013];
+int N, number, sorted[500013];
 vector<int> vec;
 
 void merge(int start, int mid, int end)
 {
-    int i = start;   //Ã¹ ¹øÂ° ¹è¿­ ½ÃÀÛ idx
-    int j = mid + 1; //µÎ ¹øÂ° ¹è¿­ ½ÃÀÛ idx
-    int k = start;   //sorted¿¡ ÀúÀåÇÒ ¶§ ¾²´Â idx
+    int i = start;   //ì „ë°˜ë¶€ ë°°ì—´ ì‹œì‘ idx
+    int j = mid + 1; //í›„ë°˜ë¶€ ë°°ì—´ ì‹œì‘ idx
+    int k = start;   //sortedì— ì €ì¥í•  ë•Œ ì“°ëŠ” idx
 
     while (i <= mid && j <= end)
     {
         if (vec[i] <= vec[j])
         {
             sorted[k] = vec[i];
+            //ì €ì¥í•˜ë©´, ë‹¤ìŒ ìˆ˜ë¡œ ë„˜ì–´ê°„ë‹¤!
             i++;
         }
         else
         {
             sorted[k] = vec[j];
+            //ë§ˆì°¬ê°€ì§€ë¡œ, ì €ì¥í•˜ë©´ ë‹¤ìŒ ìˆ˜ë¡œ ë„˜ì–´ê°„ë‹¤!
             j++;
         }
+        //ë‹¤ìŒ ì¸ë±ìŠ¤ë¡œ ë„˜ì–´ê°„ë‹¤!
         k++;
     }
-    if (i > mid) //Ã¹ ¹øÂ° ¹è¿­ÀÌ ³¡³ª¹ö·ÈÀ» ¶§
+    if (i > mid) //ì „ë°˜ë¶€ ë°°ì—´ì´ ë¨¼ì € ëë‚˜ë²„ë ¸ë‹¤ë©´,
     {
         for (int t = j; t <= end; t++)
         {
-            sorted[k] = vec[t]; //µÎ ¹øÂ° ¹è¿­ ³²Àº ¿ä¼Ò ±×´ë·Î ³Ö±â
+            sorted[k] = vec[t]; //í›„ë°˜ë¶€ ë°°ì—´ ë‚˜ë¨¸ì§€ ì „ë¶€ ìˆœì„œëŒ€ë¡œ ë„£ì–´ë²„ë¦¬ê¸°!
             k++;
         }
     }
-    else //µÎ ¹øÂ° ¹è¿­ÀÌ ³¡³ª¹ö·ÈÀ» ¶§
+    else //ë°˜ëŒ€ë¡œ, í›„ë°˜ë¶€ ë°°ì—´ì´ ë¨¼ì € ëë‚˜ë²„ë ¸ë‹¤ë©´,
     {
         for (int t = i; t <= mid; t++)
         {
-            sorted[k] = vec[t]; //Ã¹ ¹øÂ° ¹è¿­ ³²Àº ¿ä¼Ò ±×´ë·Î ³Ö±â
+            sorted[k] = vec[t]; //ì „ë°˜ë¶€ ë°°ì—´ ë‚˜ë¨¸ì§€ ì „ë¶€ ìˆœì„œëŒ€ë¡œ ë„£ì–´ë²„ë¦¬ê¸°!
             k++;
         }
     }
     for (int t = start; t <= end; t++)
     {
-        vec[t] = sorted[t]; //´ÙÀ½ conquer¸¦ À§ÇØ sortedÀÇ °ª vec¿¡ ÀúÀå
+        vec[t] = sorted[t]; //ë‹¤ìŒ conquerë¥¼ ìœ„í•´ sortedì˜ ê°’ vecì— ì €ì¥!
     }
 }
 void merge_sort(int start, int end)
 {
+    //í¬ê¸°ê°€ 1ì´ ë  ë•Œê¹Œì§€ ë¶„í• !
     if (start < end)
     {
         int mid = (start + end) / 2;
+        //ì¬ê·€í˜¸ì¶œë¡œ ë¶„í• !
         merge_sort(start, mid);
         merge_sort(mid + 1, end);
+        //ë‹¤ì‹œ ì •ë³µ!
         merge(start, mid, end);
     }
 }
 
 int main()
 {
-    cin >> n;
-    for (int i = 0; i < n; i++)
+    cin >> N;
+    for (int i = 0; i < N; i++)
     {
         cin >> number;
         vec.push_back(number);
     }
-    merge_sort(0, n - 1);
-    for (int i = 0; i < n; i++)
+    merge_sort(0, N - 1);
+    for (int i = 0; i < N; i++)
     {
         cout << sorted[i];
     }
