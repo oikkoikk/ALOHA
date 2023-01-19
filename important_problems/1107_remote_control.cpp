@@ -5,18 +5,17 @@
 #include <string>
 
 using namespace std;
-int N, K, numInt;
-int cnt = 987654321;
+int M, K, channel, min_time;
 int button[10] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
 
 void find(string num)
 {
     for (int i = 0; i < 10; i++)
     {
-        if (button[i])
+        if (button[i]) //고장나지 않은 버튼 눌러보기
         {
             string temp = num + to_string(i); //하나하나씩 붙여가며 검사!
-            cnt = min(cnt, abs(numInt - stoi(temp)) + (int)temp.size());
+            min_time = min(min_time, abs(channel - stoi(temp)) + (int)temp.length());
 
             if (temp.size() < 6) //최대가 500'000번까지이기 때문
             {
@@ -32,20 +31,16 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
 
-    cin >> numInt >> N;
+    cin >> channel >> M;
 
-    cnt = min(cnt, abs(100 - numInt)); //수빈이가 현재 100번 채널에 있으므로
+    min_time = abs(100 - channel); //수빈이가 현재 100번 채널에 있으므로
 
-    for (int i = 0; i < N; i++)
+    for (int i = 0; i < M; i++)
     {
         cin >> K;
         button[K] = 0;
     }
+    find("");
 
-    if (N < 10)
-    {
-        find("");
-    }
-
-    cout << cnt;
+    cout << min_time;
 }
