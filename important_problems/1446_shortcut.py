@@ -23,7 +23,6 @@ def dijkstra(start):
                 dist[i[0]] = cost
                 heapq.heappush(q, (cost, i[0]))
 
-
 N, D = map(int, readline().split())
 dist = [INF] * (D+1)
 graph = [[] for _ in range(D+1)]
